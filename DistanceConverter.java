@@ -1,16 +1,11 @@
-public class DistanceConverter extends UnitConverter{
+//Handles conversions between mi and km
+
+public class DistanceConverter extends ConstantConverter{
 
     public DistanceConverter() {
         super();
         imperialUnit = "mi";
         metricUnit = "km";
-    }
-
-    protected void convertToMetric() {
-        metricValue = imperialValue * 1.609344;
-    }
-
-    protected void convertToImperial() {
-        imperialValue = metricValue / 1.609344;
+        conversionConstant = 1.609344;
     }
 }
