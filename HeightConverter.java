@@ -1,7 +1,9 @@
-public class HeightConverter extends UnitConverter {
+//Handles conversions between in and cm
 
-    private static String bigImperialUnit;
-    private int bigImperialValue;
+public class HeightConverter extends ConstantConverter {
+
+    private static String bigImperialUnit; // added to handle the unit feet
+    private int bigImperialValue; // the feet portion of the input height
 
     public HeightConverter() {
         super();
@@ -9,21 +11,33 @@ public class HeightConverter extends UnitConverter {
         bigImperialValue = 0;
         imperialUnit = "in";
         metricUnit = "cm";
+        conversionConstant = 2.54;
     }
 
-    protected void convertToMetric() {
-        metricValue = imperialValue * 2.54;
+    public void setImperialValue(double imperialValue) {
+        super.setImperialValue(imperialValue);
+        calculateFeet();
     }
 
-    protected void convertToImperial() {
-        imperialValue = metricValue / 2.54;
+    public void setMetricValue(double metricValue) {
+        super.setMetricValue(metricValue);
+        calculateFeet();
     }
 
-    /* public String toString() {
+    private void calculateFeet() // determines the feet portion of the height using the set inches value
+    {
+        bigImperialValue = (int) imperialValue / 12;
+    }
+
+    public String toString() { // displays the imperial height in feet and inches instead of just inches
         String equation;
 
-
+        if (isImperialToMetric){
+            equation = bigImperialValue + " " + bigImperialUnit + " " + (imperialValue % 12) + " " + imperialUnit + " is equal to " + metricValue + " " + metricUnit + ".";
+        } else {
+            equation = metricValue + " " + metricUnit + " is equal to " + bigImperialValue + " " + bigImperialUnit + " " + (imperialValue % 12) + " " + imperialUnit + ".";
+        }
 
         return equation;
-    } */
+    }
 }

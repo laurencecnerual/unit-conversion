@@ -1,16 +1,11 @@
-public class WeightConverter extends UnitConverter {
+//Handles conversions between lbs and kg
+
+public class WeightConverter extends ConstantConverter {
 
     public WeightConverter() {
         super();
         imperialUnit = "lbs";
         metricUnit = "kg";
-    }
-
-    protected void convertToMetric() {
-        metricValue = imperialValue * 0.45359237;
-    }
-
-    protected void convertToImperial() {
-        imperialValue = metricValue / 0.45359237;
+        conversionConstant = 0.45359237;
     }
 }

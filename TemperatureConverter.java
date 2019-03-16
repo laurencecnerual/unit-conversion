@@ -1,3 +1,5 @@
+//Handles conversions between F and C
+
 public class TemperatureConverter extends UnitConverter {
 
     public TemperatureConverter() {
